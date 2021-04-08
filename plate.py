@@ -12,11 +12,17 @@ class Plate():
         self.move_plate_right = False
 
     def move(self):
-        if self.move_plate_left:
+        """
+        Меняет координаты объекта, для движения вправо-влево в пределах окна экрана
+        """
+        if self.move_plate_left and self.x > 0:
             self.x -= 5
-        elif self.move_plate_right:
+        elif self.move_plate_right and self.x + self.width < self.options.width:
             self.x += 5
 
     def draw(self):
+        """
+        Отрисовывает объект на рассчитанных координатах
+        """
         pg.draw.rect(self.screen, (255, 255, 255),
                      (self.x, self.y, self.width, self.height))
