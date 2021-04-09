@@ -5,6 +5,7 @@ from ball import Ball
 from plate import Plate
 from watcher import Watcher
 from controller import Controller
+from brick import Brick
          
 def main():
     pg.init()
@@ -15,8 +16,10 @@ def main():
     plate.draw()
     ball = Ball(options, sc)
     ball.draw()
+    brick = Brick(sc, options)
+    brick.draw()
     controller = Controller(plate)
-    watcher = Watcher(ball, plate, options)
+    watcher = Watcher(ball, plate, brick, options)
 
     pg.display.update()
    
@@ -26,6 +29,7 @@ def main():
         plate.move()
         watcher.check_screen_collision()
         watcher.check_plate_collision()
+        watcher.check_brick_collision()
         watcher.check_lose()
 
         ball.y += ball.speedy
@@ -34,6 +38,7 @@ def main():
         sc.fill((0, 0, 0))
         plate.draw()
         ball.draw()
+        brick.draw()
         pg.display.update()
 
         pg.time.delay(20)
